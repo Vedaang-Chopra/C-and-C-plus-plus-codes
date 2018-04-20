@@ -1,0 +1,301 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+class operation
+{
+    string type;
+    public:
+    operation()
+    {
+        type="NULL";
+    }
+    void input()
+    {
+        cout<<endl<<"Press 1. to select arithmetic operations.";
+        cout<<endl<<"Press 2. to select string operations.";
+        cout<<endl<<"Press anything else to set it null";
+        cout<<endl<<"Enter value:";
+        int a;
+        cin>>a;
+        switch(a)
+        {
+            case 1: type="Arithmetic";
+                    break;
+            case 2: type="String";
+                    break;
+            default: type="NULL";
+                
+                        }
+        cout<<endl<<"Value assigned.............................";
+    }
+    void output()
+    {
+        cout<<endl<<"Type of operation is:"<<type;
+        
+    }
+};
+class operators : public operation{
+  string a[100];
+  int n;
+  public:
+  operators( int n)
+  {
+      cout<<endl<<"No of operators considered ="<<n;
+      this->n=n;
+  }
+int input()
+  {
+            if(type=="NULL")
+            {
+                cout<<endl<<"Can't use operators:";
+                return 0;
+                
+            }
+         for(int i=0;i<n;i++)
+         {
+             cout<<endl<<"Enter value of parameter "<<i+1<<" :";
+             cin>>a[i];
+         }
+    return 1;  
+  }
+  void output()
+  {
+         cout<<endl<<"Type of operators:"<<type;
+         if(type=="Arithmetic")
+         {
+             for(int i=0;i<n;i++)
+         {
+             cout<<endl<<"Parameter"<<i+1<<" has value:";
+             cout<<stoi(a[i]);
+         }
+       }
+        if(type=="String")
+         {
+             for(int i=0;i<n;i++)
+         {
+             cout<<endl<<"Parameter"<<i+1<<" has value:";
+             cout<<(a[i]);
+         }
+      
+         }
+            
+    
+  }
+  
+};
+class optype:public operators
+{
+    int s;
+    public:
+    int atype()
+    {
+        cout<<endl<<"Press 1. for Addition.";
+        cout<<endl<<"Press 2. for Subtraction.";
+        cout<<endl<<"Press 3. for Multiplication.";
+        cout<<endl<<"Press 4. for Division.";
+        cout<<endl<<"Enter value:";
+        cin>>s;
+        return s;
+    }
+    int stype()
+    {
+        cout<<endl<<"Press 1. for Conactination.";
+        cout<<endl<<"Press 2. for String Copy.";
+        cout<<endl<<"Press 3. for String Lengths.";
+        cout<<endl<<"Enter value:";
+        cin>>s;
+        return s;
+    }
+    int typedecide()
+    {
+        if(type="Arithmetic")
+        {
+            int f= atype();
+            return f;
+        }
+        if(type=="String")
+        {
+            int f= stype();
+            return f+4;
+        }
+    }
+}
+class addition: public optype{
+    int c=0;
+    public:
+    int  result(){
+        for(int i=0;i<n;i++)
+        {
+            c=stoi(a[i])+c;
+        }
+    return c;    
+    }
+};
+class subtraction : public optype{
+    int c=0;
+    public:
+    int  result(){
+        for(int i=0;i<n;i++)
+        {
+            c=stoi(a[i])-c;
+        }
+    return c;    
+    }
+    
+};
+class multiply : public optype{
+int c=0;
+    public:
+    int  result(){
+        for(int i=0;i<n;i++)
+        {
+            c=stoi(a[i])*c;
+        }
+    return c;    
+    }
+    
+    
+};
+class divide : public optype{
+    int c=0;
+    public:
+    int  result(){
+        for(int i=0;i<n;i++)
+        {
+            c=stoi(a[i])/c;
+        }
+    return c;    
+    }
+    
+    
+};
+class concatination : public optype{
+    String c=NULL;
+    public:
+    String  result(){
+        for(int i=0;i<n;i++)
+        {
+            c=strncat(a[i],c);
+        }
+    return c;    
+    }
+    
+    
+};
+class stringcopy : public optype{
+    String c=NULL;
+    public:
+    String  result(){
+        for(int i=0;i<n;i++)
+        {
+            c=strncpy(a[i],c);
+        }
+    return c;    
+    }
+    
+    
+};
+int* stringlength : public optype{
+    int c[100];
+    public:
+    String  result(){
+        for(int i=0;i<n;i++)
+        {
+            c[i]=strlen(a[i]);
+        }
+return &c;    
+    }
+    
+    
+};
+
+int main()
+{
+    char c='Y';
+    while(c='Y' || c='y')
+ {
+    operation o1;
+    o1.input();
+    cout<<endl<<"Enter number of operators:";
+    int n;
+    cin>>n;
+    operators q1(n);
+    q1.input();
+    q1.output();
+    optype w1;
+    int d=w1.typedecide();
+    if(d==1)
+    {
+        addition a1;
+        int z;
+        z=a1.result();
+        cout<<endl<<"Added result is:"<<z;
+        
+    }
+    if(d==2)
+    {
+        subtraction s1;
+        int z;
+        z=s1.result();
+        cout<<endl<<"Subtracted result is:"<<z;
+        
+    }
+    if(d==3)
+    {
+        multiply m1;
+        int z;
+        z=m1.result();
+        cout<<endl<<"Multipied result is:"<<z;
+        
+    }
+    if(d==4)
+    {
+        division d1;
+        int z;
+        z=d1.result();
+        cout<<endl<<"Divided result is:"<<z;
+        
+    }
+    if(d==5)
+    {
+        concatination c1;
+        String z;
+        z=c1.result();
+        cout<<endl<<"Conactinated result is:"<<z;
+        
+    }
+    if(d==6)
+    {
+        stringcopy c1;
+        string z;
+        z=c1.result();
+        cout<<endl<<"Last copied (string)result is:"<<z;
+        
+    }
+    if(d==7)
+    {
+        stringlength c1;
+        int z[100];
+        z=c1.result();
+        cout<<endl<<"String lenghts are:";
+        for(int i=0;i<100;i++)
+        {
+            cout<<endl<<z[i];
+        }
+        
+    }
+    cout<<endl<<"Wish to end or change values and repeat:";
+    cin>>c;
+    
+}
+    return 0;
+}
